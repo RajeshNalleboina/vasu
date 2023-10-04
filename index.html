@@ -29,6 +29,12 @@
             user-select: none;
             text-align: center;
         }
+
+        @media screen and (max-device-width: 720px) {
+            h1 {
+                font-size: 3em;
+            }
+        }
         
     </style>
 </head>
@@ -86,6 +92,7 @@
             // create a lovely place to store the firework
             this.fireworks = []
             this.counter = 0
+            document.getElementById("my_audio").play();
         }
 
         resize() {
@@ -115,6 +122,7 @@
         }
 
         update(delta) {
+        document.getElementById("my_audio").play();
             ctx.globalCompositeOperation = 'hard-light'
             ctx.fillStyle = `rgba(20,20,20,${7 * delta})`
             ctx.fillRect(0, 0, this.width, this.height)
@@ -134,7 +142,6 @@
                     random(30, 110)))
                 this.counter = 0
             }
-            document.getElementById("my_audio").play();
             // remove the dead fireworks
             if (this.fireworks.length > 1000) this.fireworks = this.fireworks.filter(firework => !firework.dead)
 
@@ -156,6 +163,7 @@
         }
 
         update(delta) {
+        document.getElementById("my_audio").play();
             if (this.dead) return
             let xDiff = this.targetX - this.x
             let yDiff = this.targetY - this.y
@@ -208,6 +216,7 @@
     document.onclick = evt => birthday.onClick(evt)
     document.ontouchstart = evt => birthday.onClick(evt);
     (function loop() {
+        document.getElementById("my_audio").play();
             requestAnimationFrame(loop)
             let now = timestamp()
             let delta = now - then
